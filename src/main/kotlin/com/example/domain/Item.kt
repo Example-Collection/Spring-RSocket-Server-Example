@@ -1,5 +1,6 @@
 package com.example.domain
 
+import com.example.dto.ItemResponseDto
 import org.springframework.data.annotation.Id
 import java.util.*
 
@@ -10,16 +11,14 @@ class Item {
     var description: String = ""
     var price = 0.0
 
-    private constructor() {}
-
     constructor(name: String, description: String, price: Double) {
         this.name = name
         this.description = description
         this.price = price
     }
 
-    constructor(id: String, name: String, description: String, price: Double): this(name, description, price) {
-        this.id = id
+    fun toResponseDto(): ItemResponseDto {
+        return ItemResponseDto(this)
     }
 
     override fun equals(other: Any?): Boolean {
